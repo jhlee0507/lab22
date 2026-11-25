@@ -108,16 +108,18 @@ end
 saveFigure(fig,outputDir,name);
 end
 
-function drawBuildings(map,fillShapes)
-for b = 1:numel(map.buildings)
-    ring = map.buildings{b};
-    if fillShapes
-        patch(ring(:,1),ring(:,2),[0.88 0.90 0.91],'EdgeColor',[0.64 0.68 0.70],'HandleVisibility','off');
-    else
-        ring = ring([1:end,1],:);
-        plot(ring(:,1),ring(:,2),'-','Color',[0.85 0.87 0.91],'LineWidth',0.6,'HandleVisibility','off');
-    end
+function drawBuildings(map,layoutView)
+% One line object for the whole map keeps dense survey areas tractable.
+rings = [map.buildings;map.courtyards];
+if isempty(rings), return; end
+closed = cellfun(@(r) [r;r(1,:);NaN NaN],rings,'UniformOutput',false);
+edges = vertcat(closed{:});
+if layoutView
+    color = [0.56 0.60 0.61];
+else
+    color = [0.83 0.85 0.88];
 end
+plot(edges(:,1),edges(:,2),'-','Color',color,'LineWidth',0.45,'HandleVisibility','off');
 end
 
 function markSites(map,indices,marker,color,label)

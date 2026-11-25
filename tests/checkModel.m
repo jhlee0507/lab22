@@ -6,7 +6,8 @@ cfg = simulationConfig();
 checkLinkBudget(cfg);
 checkPropagation(cfg);
 checkPlacement(root,cfg);
-fprintf('Passed: link budget, UMa propagation and O2I, placement and statistics.\n');
+checkSurvey(root,cfg);
+fprintf('Passed: link budget, UMa/O2I, placement, statistics, survey geometry and station import.\n');
 end
 
 function checkLinkBudget(cfg)

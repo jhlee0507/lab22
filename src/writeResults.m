@@ -40,6 +40,7 @@ end
 [info,closeInfo] = outputFile(outputDir,'run_info.txt'); %#ok<ASGLU>
 fprintf(info,'%s\nGrid: %d points (%d indoor), step %g m\n', ...
     map.label,size(map.xy,1),nnz(map.indoor),cfg.gridStepM);
+if isfield(map,'snapshot'), fprintf(info,'Spectrum Portal snapshot: %s\n',map.snapshot); end
 fprintf(info,'Planning: %d trials, seed %d\nEvaluation: %d trials, seed %d\n', ...
     cfg.planningTrials,cfg.planningSeed,cfg.evaluationTrials,cfg.evaluationSeed);
 fprintf(info,'Added: %s, %s\n',map.siteId{plan.added(1)},map.siteId{plan.added(2)});

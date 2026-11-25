@@ -3,13 +3,18 @@ function run = main(dataDir, outputDir)
 root = fileparts(mfilename('fullpath'));
 addpath(fullfile(root,'src'));
 if nargin < 1 || isempty(dataDir)
-    dataDir = fullfile(root,'data','demo');
+    dataDir = fullfile(root,'data','gunja');
 end
 if nargin < 2 || isempty(outputDir)
     [~,dataset] = fileparts(regexprep(char(dataDir),'[/\\]+$',''));
     outputDir = fullfile(root,'results',dataset);
 end
 cfg = simulationConfig();
+if ~isfile(fullfile(dataDir,'spectrum_snapshot.txt')) && isfile(fullfile(dataDir,'origin.csv')) ...
+        && isfile(fullfile(dataDir,'candidates.csv'))
+    fprintf('Retrieving ground LTE permits for Gunja Station from spectrummap.kr ...\n');
+    fetchSpectrumSites(dataDir);
+end
 map = loadGunjaMap(dataDir,cfg);
 plan = chooseAddedSites(map,cfg);
 fprintf('%s\n',map.label);
