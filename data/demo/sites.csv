@@ -1,0 +1,13 @@
+site_id,role,east_m,north_m,azimuth_deg
+S1,service,-185,105,30
+S2,service,195,145,80
+S3,service,75,-205,15
+E1,external,-380,-170,60
+E2,external,365,-210,10
+E3,external,80,390,40
+E4,external,-245,365,90
+P1,candidate,-195,-175,35
+P2,candidate,225,-85,15
+P3,candidate,-80,230,70
+P4,candidate,220,250,0
+P5,candidate,-60,-80,105
