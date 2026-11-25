@@ -1,0 +1,5 @@
+Gunja Station surface | synthetic example
+Grid: 3721 points (1293 indoor), step 10 m
+Planning: 8 trials, seed 4107
+Evaluation: 20 trials, seed 9713
+Added: P1, P2
